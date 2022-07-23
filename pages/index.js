@@ -4,11 +4,11 @@ import { Product, FooterBanner, HeroBanner } from "../components";
 
 const Home = ({ products, bannerData }) => (
   <div>
-    <HeroBanner />
+    <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
 
     <div className="products-heading">
       <h2>Best Selling Products</h2>
-      <p>Hats of many Styles</p>
+      <p>speaker There are many variations passages</p>
     </div>
     <div className="products-container">
       {["Product1", "Product 2"].map((product) => product)}
