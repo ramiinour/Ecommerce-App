@@ -1,22 +1,32 @@
 import React from "react";
-
+import { client } from "../lib/client";
 import { Product, FooterBanner, HeroBanner } from "../components";
 
-const Home = () => {
-  return (
-    <div>
-      <HeroBanner />
+const Home = ({ products, bannerData }) => (
+  <div>
+    <HeroBanner />
 
-      <div className="products-heading">
-        <h2>Best Selling Products</h2>
-        <p>Hats of many Styles</p>
-      </div>
-      <div className="products-container">
-        {["Product1", "Product 2"].map((product) => product)}
-      </div>
-      <FooterBanner />
+    <div className="products-heading">
+      <h2>Best Selling Products</h2>
+      <p>Hats of many Styles</p>
     </div>
-  );
+    <div className="products-container">
+      {["Product1", "Product 2"].map((product) => product)}
+    </div>
+    <FooterBanner />
+  </div>
+);
+
+export const getServerSideProps = async () => {
+  const query = '*[_type == "product"]';
+  const products = await client.fetch(query);
+
+  const bannerQuery = '*[_type == "banner"]';
+  const bannerData = await client.fetch(bannerQuery);
+
+  return {
+    props: { products, bannerData },
+  };
 };
 
 export default Home;
