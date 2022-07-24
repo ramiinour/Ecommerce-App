@@ -75,7 +75,7 @@ export const StateContext = ({ children }) => {
         setCartItems(
           cartItems.map((item) =>
             item._id === id
-              ? { ...foundProduct, quantity: foundProduct.quantity + 1 }
+              ? { ...foundProduct, quantity: foundProduct.quantity - 1 }
               : item
           )
         );
